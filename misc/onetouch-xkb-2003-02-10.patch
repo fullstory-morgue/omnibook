@@ -1,0 +1,199 @@
+--- /usr/X11R6/lib/X11/xkb/rules/xfree86.onetouch	Mon Feb 10 22:58:41 2003
++++ /usr/X11R6/lib/X11/xkb/rules/xfree86	Mon Feb 10 23:47:38 2003
+@@ -89,6 +89,27 @@
+   hp		us	=	us(pc104)+inet(hp)
+   hp		en_US	=	en_US(pc104)+inet(hp)
+   hp		*	=	en_US(pc104)+inet(hp)+%l%(v)
++  xe3gc		us	=	us(pc104)+inet(xe3gc)
++  xe3gc		en_US	=	en_US(pc104)+inet(xe3gc)
++  xe3gc		*	=	en_US(pc104)+inet(xe3gc)+%l%(v)
++  xe3gf		us	=	us(pc104)+inet(xe3gf)
++  xe3gf		en_US	=	en_US(pc104)+inet(xe3gf)
++  xe3gf		*	=	en_US(pc104)+inet(xe3gf)+%l%(v)
++  xt1000	us	=	us(pc104)+inet(xt1000)
++  xt1000	en_US	=	en_US(pc104)+inet(xt1000)
++  xt1000	*	=	en_US(pc104)+inet(xt1000)+%l%(v)
++  xe4xxx	us	=	us(pc104)+inet(xe4xxx)
++  xe4xxx	en_US	=	en_US(pc104)+inet(xe4xxx)
++  xe4xxx	*	=	en_US(pc104)+inet(xe4xxx)+%l%(v)
++  xt155		us	=	us(pc104)+inet(xt155)
++  xt155		en_US	=	en_US(pc104)+inet(xt155)
++  xt155		*	=	en_US(pc104)+inet(xt155)+%l%(v)
++  ob5xx		us	=	us(pc104)+inet(ob5xx)
++  ob5xx		en_US	=	en_US(pc104)+inet(ob5xx)
++  ob5xx		*	=	en_US(pc104)+inet(ob5xx)+%l%(v)
++  s3000		us	=	us(pc104)+inet(s3000)
++  s3000		en_US	=	en_US(pc104)+inet(s3000)
++  s3000		*	=	en_US(pc104)+inet(s3000)+%l%(v)
+   compaq	us	=	us(pc104)+inet(compaq)
+   compaq	en_US	=	en_US(pc104)+inet(compaq)
+   compaq	*	=	en_US(pc104)+inet(compaq)+%l%(v)
+--- /usr/X11R6/lib/X11/xkb/rules/xfree86.lst.onetouch	Mon Feb 10 22:58:42 2003
++++ /usr/X11R6/lib/X11/xkb/rules/xfree86.lst	Tue Feb 11 00:03:42 2003
+@@ -21,6 +21,13 @@
+   pc98		PC-98xx Series
+   abnt2		Brazilian ABNT2
+   hp		HP Internet
++  xe3gc		HP OmniBook XE3 GC, GD, GE and HP Pavilion N5xxx
++  xe3gf		HP OmniBook XE3 GF
++  xt1000	HP OmniBook XT1000 and HP Pavilion zt11xx
++  xe4xxx	HP OmniBook xe4xxx and ze4xxx
++  xt155		HP OmniBook xt155
++  ob5xx		HP OmniBook 5xx
++  s3000		Toshiba Satellite 3000
+   itouch	Logitech iTouch
+   logicordless	Logitech Cordless Desktop Pro
+   logiinternet	Logitech Internet Keyboard
+--- /usr/X11R6/lib/X11/xkb/symbols/inet.onetouch	Mon Feb 10 22:58:39 2003
++++ /usr/X11R6/lib/X11/xkb/symbols/inet	Tue Feb 11 00:03:21 2003
+@@ -14,6 +14,150 @@
+     key <I20>	{	[ XF86AudioMute		]	};
+ };
+ 
++partial alphanumeric_keys
++xkb_symbols "xe3gc" {
++
++    // Describes the OneTouch buttons on HP Omnibook XE3 GC and
++    // HP Pavilion N52xx models.
++    // See http://sourceforge.net/projects/omke for details on enabling
++    // these keys
++
++    name[Group1]= "XE3GC";
++    key <I73>	{	[ XF86WWW		]	};
++    key <I74>	{	[ XF86Mail		]	};
++    key <I72>	{	[ XF86Launch1		]	};
++    key <I71>	{	[ Help			]	};
++    key <I10>	{	[ XF86AudioPrev		]	};
++    key <I22>	{	[ XF86AudioPlay, XF86AudioPause	]	};
++    key <I24>	{	[ XF86AudioStop, XF86Eject	]	};
++    key <I19>	{	[ XF86AudioNext		]	};
++};
++
++partial alphanumeric_keys
++xkb_symbols "xe3gf" {
++
++    // Describes the OneTouch buttons on HP Omnibook XE3 GF models.
++    // See http://sourceforge.net/projects/omke for details on enabling
++    // these keys
++
++    name[Group1]= "XE3GF";
++    key <I32>	{	[ XF86WWW		]	};
++    key <I6C>	{	[ XF86Mail		]	};
++    key <I74>	{	[ XF86Launch1		]	};
++    key <I73>	{	[ Help			]	};
++    key <I10>	{	[ XF86AudioPrev		]	};
++    key <I22>	{	[ XF86AudioPlay, XF86AudioPause	]	};
++    key <I24>	{	[ XF86AudioStop, XF86Eject	]	};
++    key <I19>	{	[ XF86AudioNext		]	};
++    key <I2E>	{	[ XF86AudioLowerVolume	]	};
++    key <I30>	{	[ XF86AudioRaiseVolume	]	};
++    key <I20>	{	[ XF86AudioMute		]	};
++};
++
++partial alphanumeric_keys
++xkb_symbols "xt1000" {
++
++    // Describes the OneTouch buttons on HP Omnibook XT1000 and HP Pavilion
++    // ZT11xx models.
++    // See http://sourceforge.net/projects/omke for details on enabling
++    // these keys
++
++    name[Group1]= "XT1000";
++    key <I6C>	{	[ XF86Mail		]	};
++    key <I74>	{	[ XF86Launch1		]	};
++    key <I32>	{	[ XF86WWW		]	};
++    key <I73>	{	[ XF86Launch2		]	};
++    key <I72>	{	[ Help			]	};
++    key <I71>	{	[ XF86Launch3		]	};
++    key <I10>	{	[ XF86AudioPrev		]	};
++    key <I19>	{	[ XF86AudioNext		]	};
++    key <I22>	{	[ XF86AudioPlay, XF86AudioPause	]	};
++    key <I24>	{	[ XF86AudioStop, XF86Eject	]	};
++    key <I2E>	{	[ XF86AudioLowerVolume	]	};
++    key <I30>	{	[ XF86AudioRaiseVolume	]	};
++    key <I20>	{	[ XF86AudioMute		]	};
++};
++
++partial alphanumeric_keys
++xkb_symbols "xe4xxx" {
++
++    // Describes the OneTouch buttons on HP Omnibook xe4xxx and ze4xxx
++    // models.
++    // See http://sourceforge.net/projects/omke for details on enabling
++    // these keys
++
++    name[Group1]= "xe4xxx";
++    key <I6C>	{	[ XF86Mail		]	};
++    key <I73>	{	[ XF86Launch1		]	};
++    key <I32>	{	[ XF86WWW		]	};
++    key <I71>	{	[ XF86Launch2		]	};
++    key <I70>	{	[ Help			]	};
++    key <I2E>	{	[ XF86AudioLowerVolume	]	};
++    key <I30>	{	[ XF86AudioRaiseVolume	]	};
++    key <I20>	{	[ XF86AudioMute		]	};
++};
++
++partial alphanumeric_keys
++xkb_symbols "zt11xx" {
++
++    // Describes the OneTouch buttons on HP Pavilion ZT11xx models.
++    // See http://sourceforge.net/projects/omke for details on enabling
++    // these keys
++
++    name[Group1]= "ZT11xx";
++    key <I6C>	{	[ XF86Mail		]	};
++    key <I74>	{	[ XF86Launch1		]	};
++    key <I32>	{	[ XF86WWW		]	};
++    key <I73>	{	[ XF86Launch2		]	};
++    key <I72>	{	[ Help			]	};
++    key <I71>	{	[ XF86Launch3		]	};
++    key <I10>	{	[ XF86AudioPrev		]	};
++    key <I19>	{	[ XF86AudioNext		]	};
++    key <I22>	{	[ XF86AudioPlay, XF86AudioPause	]	};
++    key <I24>	{	[ XF86AudioStop, XF86Eject	]	};
++    key <I2E>	{	[ XF86AudioLowerVolume	]	};
++    key <I30>	{	[ XF86AudioRaiseVolume	]	};
++    key <I20>	{	[ XF86AudioMute		]	};
++};
++
++partial alphanumeric_keys
++xkb_symbols "ob5xx" {
++
++    // Describes the OneTouch buttons on HP Omnibook 5xx models.
++    // See http://sourceforge.net/projects/omke for details on enabling
++    // these keys
++
++    name[Group1]= "OB5xx";
++    key <I74>	{	[ XF86Launch1		]	};
++    key <I73>	{	[ Help			]	};
++    key <I10>	{	[ XF86AudioPrev		]	};
++    key <I22>	{	[ XF86AudioPlay, XF86AudioPause	]	};
++    key <I24>	{	[ XF86AudioStop, XF86Eject	]	};
++    key <I19>	{	[ XF86AudioNext		]	};
++    key <I2E>	{	[ XF86AudioLowerVolume	]	};
++    key <I30>	{	[ XF86AudioRaiseVolume	]	};
++};
++
++partial alphanumeric_keys
++xkb_symbols "s3000" {
++
++    // Describes the Special buttons on Toshiba Satellite 3000 models.
++    // See http://sourceforge.net/projects/omke for details on enabling
++    // these keys
++
++    name[Group1]= "S3000";
++    key <I71>	{	[ XF86WWW		]	};
++    key <I73>	{	[ XF86Mail		]	};
++    key <I06>	{	[ XF86Launch1		]	};
++    key <I13>	{	[ XF86Launch2		]	};
++    key <I24>	{	[ XF86AudioStop, XF86Eject	]	};
++    key <I10>	{	[ XF86AudioPrev		]	};
++    key <I19>	{	[ XF86AudioNext		]	};
++    key <I22>	{	[ XF86AudioPlay, XF86AudioPause	]	};
++    key <I75>	{	[ XF86AudioRaiseVolume	]	};
++    key <I76>	{	[ XF86AudioLowerVolume	]	};
++};
++
+ partial alphanumeric_keys 
+ xkb_symbols "compaq" {
+ 

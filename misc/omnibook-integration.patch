@@ -1,0 +1,100 @@
+--- linux-2.6.17/arch/i386/Kconfig	2006-06-18 03:49:35.000000000 +0200
++++ linux-2.6.17-omke/arch/i386/Kconfig	2006-09-07 19:16:40.994446032 +0200
+@@ -334,6 +334,54 @@
+ 	  Say Y if you intend to run this kernel on a Toshiba portable.
+ 	  Say N otherwise.
+ 
++config OMNIBOOK
++       tristate "HP Omnibook and Toshiba laptop support"
++       depends on PCI && X86 && EXPERIMENTAL
++       ---help---
++          This adds a driver to support some features of laptops such as 
++	  HP OmniBook, Pavilion, Compal ACL00 ,Toshiba Satellite which have 
++	  a Phoenix BIOS and are not supported by other Toshiba drivers
++          and some Acer Aspire series laptops.
++
++	  Most of these are manufactured by Compal Electronics, Inc as ODM
++          
++	  See  <http://www.sf.net/projects/omnibook/>.
++
++          Say Y if you intend to run this kernel on a supported portable.
++          Say N otherwise.
++
++          This driver is also available as a module ( = code which can be
++          inserted in and removed from the running kernel whenever you want).
++          If you want to compile it as a module, say M here and read
++          Documentation/modules.txt.
++          
++	  The module is called omnibook.ko due to historical reasons.
++
++config OMNIBOOK_LEGACY
++       bool "HP omnibook legacy features"
++       depends on OMNIBOOK
++       default y if !ACPI
++       ---help---
++	 This option enable support for some legacy features of the omnibook
++         driver, including:
++         * /proc/apm emulation.
++	 * non-ACPI support code.
++	 * AC adapter and Battery monitoring default enabling.
++	 This is mainly for laptops with no or broken ACPI support.
++
++	 If you are unsure, say N.
++
++config OMNIBOOK_BACKLIGHT
++       bool "HP omnibook backlight support"
++       depends on OMNIBOOK
++       select BACKLIGHT_CLASS_DEVICE
++       default y
++       ---help---
++         Enable registration of the omnibook module as a backlight device.
++         This allow query and control of the LCD brightness via sysfs.
++	 
++	 If you are unsure, say Y.
++
+ config I8K
+ 	tristate "Dell laptop support"
+ 	---help---
+diff -Nru linux-2.6.17/drivers/misc/Makefile linux-2.6.17-omke/drivers/misc/Makefile
+--- linux-2.6.17/drivers/misc/Makefile	2006-06-18 03:49:35.000000000 +0200
++++ linux-2.6.17-omke/drivers/misc/Makefile	2006-09-07 14:16:09.775221578 +0200
+@@ -5,3 +5,5 @@
+ 
+ obj-$(CONFIG_IBM_ASM)	+= ibmasm/
+ obj-$(CONFIG_HDPU_FEATURES)	+= hdpuftrs/
++obj-$(CONFIG_OMNIBOOK) += omnibook/
++
+diff -Nru linux-2.6.17/drivers/misc/omnibook/Makefile linux-2.6.17-omke/drivers/misc/omnibook/Makefile
+--- linux-2.6.17/drivers/misc/omnibook/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ linux-2.6.17-omke/drivers/misc/omnibook/Makefile	2006-09-07 18:15:18.927168481 +0200
+@@ -0,0 +1,28 @@
++
++# Makefile -- makefile for the HP OmniBook support module
++
++# This program is free software; you can redistribute it and/or modify it
++# under the terms of the GNU General Public License as published by the
++# Free Software Foundation; either version 2, or (at your option) any
++# later version.
++#
++# This program is distributed in the hope that it will be useful, but
++# WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
++# General Public License for more details.
++#
++# Written by Soós Péter <sp@osb.hu>, 2002-2004
++#
++# Note! Dependencies are done automagically by 'make dep', which also
++# removes any old dependencies. DON'T put your own dependencies here
++# unless it's something special (ie not a .c file).
++#
++# Note 2! The CFLAGS definitions are now in the main makefile...
++
++EXTRA_LDFLAGS += $(src)/sections.lds
++obj-$(CONFIG_OMNIBOOK) += omnibook.o
++
++omnibook-objs := init.o ec.o compal.o acpi.o nbsmi.o \
++ac.o apmemu.o battery.o blank.o bluetooth.o display.o dock.o dump.o \
++fan.o fan_policy.o hotkeys.o info.o lcd.o muteled.o temperature.o \
++touchpad.o wireless.o
+
+

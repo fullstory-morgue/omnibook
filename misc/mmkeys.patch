@@ -1,0 +1,13 @@
+--- nbsmi.c~	2007-01-12 15:25:18.000000000 +0100
++++ nbsmi.c	2007-01-12 15:25:18.000000000 +0100
+@@ -424,6 +424,10 @@
+ 	{ KEY_F8, KEY_WLAN},
+ 	{ KEY_F9, KEY_FN_F9},
+ 	{ KEY_SPACE, KEY_ZOOM},
++	{ KEY_Y, KEY_PREVIOUSSONG},
++	{ KEY_X, KEY_PLAYPAUSE},
++	{ KEY_B, KEY_NEXTSONG},
++	{ KEY_V, KEY_STOPCD},
+ 	{ 0,0},
+ };
+ 
