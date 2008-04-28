@@ -1,0 +1,11 @@
+--- a/Makefile
++++ b/Makefile
+@@ -29,7 +29,7 @@
+ #Uncomment and set to force debug behavior
+ #NOTE:	Default (commented) behavior is to enable debug in trunk or branch svn 
+ #	snapshot and to disable it for release
+-#OMNIBOOK_WANT_DEBUG=n
++OMNIBOOK_WANT_DEBUG=n
+ 
+ #comment to disable backlight device support
+ OMNIBOOK_WANT_BACKLIGHT=y
